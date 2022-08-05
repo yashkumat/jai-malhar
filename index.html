@@ -227,7 +227,7 @@
                             items_list +=
                           `<form onsubmit="event.preventDefault(); addItem(${type_index},${item_index});" id="cartForm ${type_index} ${item_index}" >`+
                             `<div class="input-group">`+
-                              `<input type="text" name="quantity" class="form-control" placeholder="Quantity" id="Quantity ${type_index} ${item_index}">`;
+                              `<input type="text" name="quantity" onkeypress='return checkIfNumber(event)' class="form-control" placeholder="Quantity" id="Quantity ${type_index} ${item_index}">`;
 
                               if(element2[1][0] && element2[1][1]){
                                 items_list += `<select class="form-select" name="weight" aria-label="Weight" id="Weight ${type_index} ${item_index}" >`+
@@ -402,6 +402,11 @@
       return false
     }
     
+  }
+  
+  function checkIfNumber(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    return !(charCode > 31 && (charCode < 48 || charCode > 57));
   }
 
 
